@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block css %}
+<style>
+    body {
+        background-image: url('/static/images/bg_2.jpg');
+        height: 100vh;
+    }
+
+    .form-control {
+        height: 100% !important;
+    }
+</style>
+{% endblock css %}
+
+{% block body %}
+<div class="container">
+    <div class="row " style="height: 90vh">
+        <div class="col-md-8 mx-auto my-auto">
+            {% include "notify.html" %}
+            <form method="post" enctype="multipart/form-data" class="card bg-dark text-white shadow-lg">
+                <img src="/static/images/bg.jpg" class="card-img" alt="...">
+                <div class="card-img-overlay text-center">
+                    <h1 class="card-title display-2">Musically</h1>
+                    <p class="card-text lead">The Machine Learning based music genre classification.</p>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="mb-3">
+                                <input class="form-control" name="file" id="formFileLg" type="file"
+                                    accept="audio/mpeg,audio/x-wav">
+                            </div>
+
+                        </div>
+                        <div class="col">
+                            <button class="btn btn-primary  px-5">
+                                <i class="fa fa-upload" aria-hidden="true"></i> Upload
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="card">
+                <div class="card-body">
+                    {% if session.spath %}
+                    <img class="card-img" src="{{session.spath}}" alt="">
+                    {% endif %}
+                    {% if session.wpath %}
+                    <img class="card-img" src="{{session.wpath}}" alt="">
+                    {% endif %}
+                </div>
+                <div class="card-footer">
+                    {% if session.genre %}
+                    <h1 class="text-center">
+                        {{session.genre}}
+                    </h1>
+                    {% else %}
+                    <p>
+                        no genre predicted
+                    </p>
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
